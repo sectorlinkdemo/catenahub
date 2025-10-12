@@ -55,6 +55,13 @@
         .nav-icons button.active, .nav-icons button:hover {
             color: #ff6b35;
         }
+
+        /* Ensure that images used as icons in the nav match the size of the emoji icons */
+        .nav-icons button img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
         /* Bottom nav */
         .bottom-nav {
             width: 100%;
