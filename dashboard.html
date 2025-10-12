@@ -57,11 +57,13 @@
         }
 
         /* Ensure that images used as icons in the nav match the size of the emoji icons */
-        .nav-icons button img {
-            width: 24px;
-            height: 24px;
-            object-fit: contain;
-        }
+            .nav-icons button img {
+                /* Increase image dimensions to better match the visual weight
+                   of the emoji glyphs used for other nav icons */
+                width: 28px;
+                height: 28px;
+                object-fit: contain;
+            }
         /* Bottom nav */
         .bottom-nav {
             width: 100%;
@@ -196,7 +198,7 @@
                 <button id="files-btn" title="Files">📂</button>
                 <button id="company-btn" title="Company Profile">
                     <!-- Use the root-level Teachify logo file instead of the non-existent images folder -->
-                    <img src="teachify_logo.png" alt="Teachify" style="width:24px;height:24px;">
+                        <img src="teachify_logo.png" alt="Teachify" style="width:28px;height:28px;">
                 </button>
             </div>
         </nav>
