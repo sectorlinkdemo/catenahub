@@ -20,8 +20,8 @@
         }
         .hero {
             position: relative;
-            /* Use the hero background image stored in the images folder */
-            background: url('images/hero-bg.jpg') center/cover no-repeat;
+            /* Use the hero background image stored at the root of the repository */
+            background: url('hero-bg.jpg') center/cover no-repeat;
             color: #fff;
             padding: 60px 20px;
         }
@@ -142,12 +142,14 @@
         <a href="dashboard.html" class="nav-login">Login</a>
         <div class="hero-content">
             <div class="hero-logo">
-                <img src="./images/logo_catena.png" alt="Catena Hub Logo">
+                <!-- Use the root-level logo file instead of images folder -->
+                <img src="logo_catena.png" alt="Catena Hub Logo">
             </div>
             <div class="hero-text">
                 <h1>Unlock Cross‑Sector Partnerships</h1>
                 <p>Connect with 50 businesses across industries. Collaborate, learn and grow together.</p>
-                <a href="#" class="btn" id="join-btn">Join the first 25 free</a>
+                <!-- Link to the local signup page -->
+                <a href="signup.html" class="btn" id="join-btn">Join the first 25 free</a>
             </div>
         </div>
     </header>
@@ -175,7 +177,8 @@
         <h2 class="section-title">Who's Already Networking / Quién ya participa</h2>
         <div class="cards">
             <div class="card" style="text-align:center;">
-                <img src="./images/teachify_logo.png" alt="Teachify" style="width:120px;margin-bottom:10px;">
+                <!-- Use the root-level Teachify logo file instead of images folder -->
+                <img src="teachify_logo.png" alt="Teachify" style="width:120px;margin-bottom:10px;">
                 <p>Teachify</p>
             </div>
             <!-- Add more participant logos here -->
@@ -187,12 +190,7 @@
     <script>
         // update year automatically
         document.getElementById('year').textContent = new Date().getFullYear();
-        // handle join button – point to Google Form (placeholder link)
-        document.getElementById('join-btn').addEventListener('click', function (e) {
-            e.preventDefault();
-            // Replace the link below with an actual Google Form URL when available
-            window.open('https://forms.gle/xxxxxxxxxxxxxxxx', '_blank');
-        });
+        // The join button now links directly to signup.html
     </script>
 </body>
 </html>
