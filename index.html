@@ -20,8 +20,8 @@
         }
         .hero {
             position: relative;
-            /* Use the hero background image stored at the root of the repository */
-            background: url('hero-bg.jpg') center/cover no-repeat;
+            /* Use a cropped hero background image without embedded text */
+            background: url('hero-bg-crop1500.jpg') center/cover no-repeat;
             color: #fff;
             padding: 60px 20px;
         }
@@ -45,7 +45,8 @@
             flex-wrap: wrap;
         }
         .hero-logo img {
-            height: 80px;
+            /* Make the logo more prominent */
+            height: 120px;
         }
         .hero-text {
             max-width: 600px;
