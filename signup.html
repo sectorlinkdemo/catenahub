@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Join Catena Hub</title>
+    <!-- Link to the shared styles -->
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        /* Additional styling specific to the signup page */
+        .signup-container {
+            max-width: 600px;
+            margin: 80px auto;
+            padding: 40px;
+            background-color: #1a1a1a;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+        }
+        .signup-container h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .signup-container label {
+            display: block;
+            margin: 15px 0 5px;
+        }
+        .signup-container input,
+        .signup-container select,
+        .signup-container textarea {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            margin-bottom: 10px;
+            background-color: #2a2a2a;
+            color: #fff;
+        }
+        .signup-container input[type="file"] {
+            padding: 5px;
+            background-color: #2a2a2a;
+        }
+        .signup-container button {
+            display: inline-block;
+            background-color: #ff6b35;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: background 0.2s ease;
+        }
+        .signup-container button:hover {
+            background-color: #e55a2b;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        <h1>Join Catena Hub</h1>
+        <!-- Note: This form is for demonstration only and does not submit data anywhere -->
+        <form>
+            <label for="company-name">Company Name</label>
+            <input type="text" id="company-name" name="company-name" placeholder="Enter your company name" required>
+
+            <label for="company-logo">Company Logo</label>
+            <input type="file" id="company-logo" name="company-logo" accept="image/*">
+
+            <label for="company-size">Company Size (employees)</label>
+            <select id="company-size" name="company-size" required>
+                <option value="" disabled selected>Select one</option>
+                <option value="1-10">1–10</option>
+                <option value="11-50">11–50</option>
+                <option value="51-200">51–200</option>
+                <option value="200+">200+</option>
+            </select>
+
+            <label for="services-offered">Services Offered</label>
+            <textarea id="services-offered" name="services-offered" rows="3" placeholder="Describe what your company offers" required></textarea>
+
+            <label for="operations-overview">General Operations Overview</label>
+            <textarea id="operations-overview" name="operations-overview" rows="3" placeholder="Briefly describe your general operations" required></textarea>
+
+            <label for="connections">Desired Connections (by industry)</label>
+            <textarea id="connections" name="connections" rows="3" placeholder="Who would you like to connect with?" required></textarea>
+
+            <label for="benefits">What Could Benefit Your Company?</label>
+            <textarea id="benefits" name="benefits" rows="3" placeholder="Explain what you're looking for" required></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+</body>
+</html>
