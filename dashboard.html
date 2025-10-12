@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catena Hub Dashboard</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #0c0d10;
+            color: #fff;
+        }
+        .dashboard {
+            display: flex;
+            height: 100vh;
+        }
+        /* Sidebar */
+        .sidebar {
+            width: 80px;
+            background-color: #12161c;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding-top: 10px;
+        }
+        .profile {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+        .profile img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .nav-icons {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .nav-icons button {
+            background: none;
+            border: none;
+            color: #8c8c99;
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .nav-icons button.active, .nav-icons button:hover {
+            color: #ff6b35;
+        }
+        /* Bottom nav */
+        .bottom-nav {
+            width: 100%;
+            background-color: #12161c;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 10px 0;
+        }
+        .bottom-nav button {
+            background: none;
+            border: none;
+            color: #8c8c99;
+            font-size: 24px;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .bottom-nav button:hover {
+            color: #ff6b35;
+        }
+        /* Main content */
+        .main-content {
+            flex: 1;
+            background-color: #0c0d10;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+        }
+        .section-header {
+            padding: 20px;
+            font-size: 1.5rem;
+            font-weight: bold;
+            border-bottom: 1px solid #1c1f25;
+        }
+        .people-section, .chat-section, .profile-section {
+            display: none;
+            flex: 1;
+            overflow-y: auto;
+        }
+        .people-section.active, .chat-section.active, .profile-section.active {
+            display: block;
+        }
+        /* People section */
+        .people-section .search-container {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            gap: 10px;
+        }
+        .people-section input[type="text"] {
+            flex: 1;
+            padding: 8px 12px;
+            border-radius: 4px;
+            border: none;
+            background-color: #1c1f25;
+            color: #fff;
+        }
+        .people-section select {
+            padding: 8px;
+            border-radius: 4px;
+            border: none;
+            background-color: #1c1f25;
+            color: #fff;
+        }
+        .person-card {
+            background-color: #1c1f25;
+            margin: 10px 20px;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .person-card h4 {
+            margin: 0;
+            font-size: 1.2rem;
+            color: #ff6b35;
+        }
+        .person-card p {
+            margin: 4px 0;
+            font-size: 0.9rem;
+            color: #ccc;
+        }
+        /* Chat section */
+        .chat-section .chat-header {
+            padding: 20px;
+            font-size: 1.3rem;
+            border-bottom: 1px solid #1c1f25;
+        }
+        .message {
+            padding: 10px 20px;
+            margin: 10px;
+        }
+        .message .sender {
+            font-weight: bold;
+        }
+        .message .time {
+            font-size: 0.8rem;
+            color: #888;
+            margin-left: 6px;
+        }
+        .message p {
+            margin: 4px 0 0 0;
+            line-height: 1.4;
+        }
+        /* Profile section */
+        .profile-section {
+            padding: 20px;
+        }
+        .profile-section h3 {
+            margin-top: 0;
+            color: #ff6b35;
+        }
+        .profile-section p {
+            margin: 6px 0;
+        }
+        .logo-in-nav {
+            width: 40px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard">
+        <nav class="sidebar">
+            <div class="profile">
+                <img src="./images/user.jpg" alt="Profile">
+            </div>
+            <div class="nav-icons">
+                <button id="people-btn" title="People" class="active">👥</button>
+                <button id="chat-btn" title="Chat">🤝</button>
+                <button id="announcements-btn" title="Announcements">📣</button>
+                <button id="calendar-btn" title="Calendar">🗓️</button>
+                <button id="files-btn" title="Files">📂</button>
+                <button id="company-btn" title="Company Profile">
+                    <img src="./images/teachify_logo.png" alt="Teachify" style="width:24px;height:24px;">
+                </button>
+            </div>
+        </nav>
+        <div class="main-content">
+            <!-- People Section -->
+            <div class="people-section active" id="people-section">
+                <div class="section-header">People</div>
+                <div class="search-container">
+                    <input type="text" placeholder="Search by name...">
+                    <select>
+                        <option value="A-Z">Sort A–Z</option>
+                        <option value="Z-A">Sort Z–A</option>
+                    </select>
+                </div>
+                <div class="person-card">
+                    <h4>Alice Johnson</h4>
+                    <p>Email: <a href="mailto:alice.johnson@linguapro.com">alice.johnson@linguapro.com</a></p>
+                    <p>Company: LinguaPro</p>
+                    <p>Sector: Education</p>
+                    <p>Offers: Corporate language courses</p>
+                    <p>Needs: Cloud hosting solutions</p>
+                </div>
+                <div class="person-card">
+                    <h4>Bob Smith</h4>
+                    <p>Email: <a href="mailto:bob.smith@cloudnet.com">bob.smith@cloudnet.com</a></p>
+                    <p>Company: CloudNet</p>
+                    <p>Sector: Tech</p>
+                    <p>Offers: Cloud infrastructure</p>
+                    <p>Needs: Language training for staff</p>
+                </div>
+                <div class="person-card">
+                    <h4>Carol Martinez</h4>
+                    <p>Email: <a href="mailto:carol.martinez@alphatech.com">carol.martinez@alphatech.com</a></p>
+                    <p>Company: AlphaTech</p>
+                    <p>Sector: Tech</p>
+                    <p>Offers: AI language tools</p>
+                    <p>Needs: Partnerships with HR providers</p>
+                </div>
+            </div>
+            <!-- Chat Section -->
+            <div class="chat-section" id="chat-section">
+                <div class="chat-header">Chat with CloudNet Provider</div>
+                <div class="message">
+                    <span class="sender" style="color:#ff6b35;">CloudNet Provider</span>
+                    <span class="time">10:15 AM</span>
+                    <p>Hello Teachify! We're excited to explore how our cloud solutions can support your online classes.</p>
+                </div>
+                <div class="message">
+                    <span class="sender" style="color:#d846a0;">Teachify</span>
+                    <span class="time">10:17 AM</span>
+                    <p>Hi! We're looking for a reliable partner to host our learning platform. Can you share more about your services?</p>
+                </div>
+                <div class="message">
+                    <span class="sender" style="color:#ff6b35;">CloudNet Provider</span>
+                    <span class="time">10:20 AM</span>
+                    <p>Absolutely! We offer scalable, secure hosting with 24/7 support. We can also arrange a demo meeting to discuss details.</p>
+                </div>
+            </div>
+            <!-- Company Profile Section -->
+            <div class="profile-section" id="profile-section">
+                <h3>Teachify</h3>
+                <p><strong>Company Name:</strong> Teachify</p>
+                <p><strong>Size:</strong> 11–50 employees</p>
+                <p><strong>Sector:</strong> Education</p>
+                <p><strong>Offers:</strong> Corporate English training, language courses</p>
+                <p><strong>Needs:</strong> Partnerships with tech providers</p>
+                <p><strong>Description:</strong> We provide English language training for businesses across Europe with custom programmes for employees.</p>
+            </div>
+            <!-- Announcements, Calendar and Files can be blank placeholders for now -->
+            <div class="people-section" id="announcements-section">
+                <div class="section-header">Announcements</div>
+                <p style="padding:20px;">No announcements yet.</p>
+            </div>
+            <div class="people-section" id="calendar-section">
+                <div class="section-header">Calendar</div>
+                <p style="padding:20px;">Your upcoming events will appear here.</p>
+            </div>
+            <div class="people-section" id="files-section">
+                <div class="section-header">Files</div>
+                <p style="padding:20px;">No files shared yet.</p>
+            </div>
+            <!-- Footer / bottom nav for mobile style navigation -->
+            <div class="bottom-nav">
+                <button id="back-btn" title="Back">←</button>
+                <button id="forward-btn" title="Forward">→</button>
+                <button id="new-btn" title="New">＋</button>
+                <button id="calendar-bottom-btn" title="Calendar">📅</button>
+                <button id="more-btn" title="More">⋯</button>
+            </div>
+        </div>
+    </div>
+    <script>
+        // navigation logic
+        const sections = {
+            people: document.getElementById('people-section'),
+            chat: document.getElementById('chat-section'),
+            profile: document.getElementById('profile-section'),
+            announcements: document.getElementById('announcements-section'),
+            calendar: document.getElementById('calendar-section'),
+            files: document.getElementById('files-section')
+        };
+        const buttons = {
+            people: document.getElementById('people-btn'),
+            chat: document.getElementById('chat-btn'),
+            company: document.getElementById('company-btn'),
+            announcements: document.getElementById('announcements-btn'),
+            calendar: document.getElementById('calendar-btn'),
+            files: document.getElementById('files-btn'),
+        };
+        function showSection(key) {
+            // hide all
+            for (const k in sections) {
+                sections[k].classList.remove('active');
+            }
+            sections[key].classList.add('active');
+            // update active nav buttons
+            document.querySelectorAll('.nav-icons button').forEach(btn => btn.classList.remove('active'));
+            if (key === 'profile') {
+                buttons.company.classList.add('active');
+            } else if (buttons[key]) {
+                buttons[key].classList.add('active');
+            }
+        }
+        // event listeners
+        buttons.people.addEventListener('click', () => showSection('people'));
+        buttons.chat.addEventListener('click', () => showSection('chat'));
+        buttons.company.addEventListener('click', () => showSection('profile'));
+        buttons.announcements.addEventListener('click', () => showSection('announcements'));
+        buttons.calendar.addEventListener('click', () => showSection('calendar'));
+        buttons.files.addEventListener('click', () => showSection('files'));
+        // bottom nav (functionality not implemented; can be extended)
+    </script>
+</body>
+</html>
