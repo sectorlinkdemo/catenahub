@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Join Catena Hub</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+<header class="site-header">
+    <div class="container header-inner">
+        <a class="brand" href="/">
+            <img src="assets/logo.svg" alt="Catena Hub" class="brand-logo" style="height: 50px;">
+            <span class="brand-text">Catena Hub</span>
+        </a>
+        <nav class="nav">
+            <a class="btn-outline" href="#" aria-label="Login">Login</a>
+        </nav>
+    </div>
+</header>
+
+<section class="join-section">
+    <div class="container">
+        <h1>Join Catena Hub / Úñete a Catena Hub</h1>
+        <iframe src="https://forms.gle/REPLACE_WITH_FORM_URL" width="100%" height="900" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+        <p style="text-align:center; margin-top:20px;">
+            <a class="btn" href="index.html">Back to Home</a>
+        </p>
+    </div>
+</section>
+
+<footer class="site-footer">
+    <div class="container footer-inner">
+        <span>© <span id="year"></span> Catena Hub</span>
+        <nav class="footer-links">
+            <a href="#">Privacy</a>
+            <a href="#">Terms</a>
+        </nav>
+    </div>
+</footer>
+
+<script>
+    // Update the year in the footer
+    document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
