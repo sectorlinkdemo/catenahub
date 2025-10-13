@@ -1,197 +1,86 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catena Hub</title>
-    <link rel="stylesheet" href="styles.css">
-    <style>
-        /* Inline CSS reset and base styles for the MVP */
-        body {
-            margin: 0;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #0c0d10;
-            color: #fff;
-            line-height: 1.6;
-        }
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-        .hero {
-            position: relative;
-            /* Use a cropped hero background image without embedded text */
-            background: url('hero-bg-crop1500.jpg') center/cover no-repeat;
-            color: #fff;
-            padding: 60px 20px;
-        }
-        .hero::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0, 0, 0, 0.6);
-            /* overlay to improve text contrast */
-        }
-        .hero-content {
-            position: relative;
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            flex-wrap: wrap;
-        }
-        .hero-logo img {
-            /* Make the logo more prominent */
-            height: 120px;
-        }
-        .hero-text {
-            max-width: 600px;
-            margin-left: 20px;
-        }
-        .hero-text h1 {
-            font-size: 2.5rem;
-            margin: 0 0 10px;
-        }
-        .hero-text p {
-            font-size: 1.2rem;
-            margin: 0 0 30px;
-        }
-        .btn {
-            display: inline-block;
-            background-color: #ff6b35;
-            color: #fff;
-            padding: 12px 30px;
-            border-radius: 30px;
-            font-size: 1rem;
-            transition: background 0.2s ease;
-        }
-        .btn:hover {
-            background-color: #e55a2b;
-        }
-        .nav-login {
-            position: absolute;
-            top: 20px;
-            right: 30px;
-            border: 2px solid #d846a0;
-            border-radius: 30px;
-            padding: 8px 20px;
-            color: #d846a0;
-            font-weight: bold;
-            transition: background 0.2s ease;
-        }
-        .nav-login:hover {
-            background-color: #d846a0;
-            color: #fff;
-        }
-        .section {
-            padding: 60px 20px;
-        }
-        .how-it-works {
-            background-color: #1a1f24;
-        }
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            margin-bottom: 40px;
-        }
-        .cards {
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 20px;
-        }
-        .card {
-            background-color: #20262c;
-            padding: 20px;
-            border-radius: 8px;
-            width: 280px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.3);
-        }
-        .card h3 {
-            color: #ff6b35;
-            margin: 0 0 10px;
-        }
-        .card p {
-            font-size: 0.9rem;
-            margin: 0;
-        }
-        .footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 0.8rem;
-            background-color: #0c0d10;
-            color: #777;
-        }
-        @media (max-width: 768px) {
-            .hero-content {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-            .hero-text {
-                margin-left: 0;
-                margin-top: 20px;
-            }
-        }
-    </style>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Catena Hub — Unlock Cross-Sector Partnerships</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-    <header class="hero">
-        <a href="dashboard.html" class="nav-login">Login</a>
-        <div class="hero-content">
-            <div class="hero-logo">
-                <!-- Use the root-level logo file instead of images folder -->
-                <img src="logo_catena.png" alt="Catena Hub Logo">
-            </div>
-            <div class="hero-text">
-                <h1>Unlock Cross‑Sector Partnerships</h1>
-                <p>Connect with 50 businesses across industries. Collaborate, learn and grow together.</p>
-                <!-- Link to the local signup page -->
-                <a href="signup.html" class="btn" id="join-btn">Join the first 25 free</a>
-            </div>
-        </div>
-    </header>
-    <section class="section how-it-works">
-        <h2 class="section-title">How It Works / Cómo funciona</h2>
-        <div class="cards">
-            <div class="card">
-                <h3>Join / Únete</h3>
-                <p>Complete your company profile (1 minute).</p>
-                <p>Completa el perfil de tu empresa (1 minuto).</p>
-            </div>
-            <div class="card">
-                <h3>Get Matched / Conexiones</h3>
-                <p>Every month, we pair your sector with another industry.</p>
-                <p>Cada mes, conectamos tu sector con otro diferente.</p>
-            </div>
-            <div class="card">
-                <h3>Meet &amp; Collaborate / Reunirte</h3>
-                <p>We introduce you to 3–5 companies with potential synergies.</p>
-                <p>Te presentamos entre 3 y 5 empresas con posibles sinergias.</p>
-            </div>
-        </div>
-    </section>
-    <section class="section participants">
-        <h2 class="section-title">Who's Already Networking / Quién ya participa</h2>
-        <div class="cards">
-            <div class="card" style="text-align:center;">
-                <!-- Use the root-level Teachify logo file instead of images folder -->
-                <img src="teachify_logo.png" alt="Teachify" style="width:120px;margin-bottom:10px;">
-                <p>Teachify</p>
-            </div>
-            <!-- Add more participant logos here -->
-        </div>
-    </section>
-    <footer class="footer">
-        &copy; <span id="year">2025</span> Catena Hub. All rights reserved.
-    </footer>
-    <script>
-        // update year automatically
-        document.getElementById('year').textContent = new Date().getFullYear();
-        // The join button now links directly to signup.html
-    </script>
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#">
+        <img src="assets/logo.svg" alt="Catena Hub" class="brand-logo">
+        <span class="brand-text">Catena Hub</span>
+      </a>
+      <nav class="nav">
+        <a class="btn-outline" href="#" aria-label="Login">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <img class="hero-bg" src="assets/hero-bg.jpg" alt="">
+    <div class="hero-overlay"></div>
+    <div class="container hero-content">
+      <h1>Unlock Cross-Sector<br>Partnerships</h1>
+      <p class="lead">
+        Connect with 50 businesses across industries. Collaborate, learn and grow together.
+      </p>
+      <a id="joinButton" class="btn-primary" href="https://forms.gle/REPLACE_WITH_YOUR_GOOGLE_FORM" target="_blank" rel="noopener">
+        Join the first 25 free
+      </a>
+    </div>
+  </section>
+
+  <section class="how-it-works">
+    <div class="container">
+      <h2>How It Works / Cómo funciona</h2>
+
+      <div class="cards">
+        <article class="card">
+          <h3>Join / Únete</h3>
+          <p>
+            Complete your company profile (1 minute).<br>
+            Completa el perfil de tu empresa (1 minuto).
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Get Matched / Conexiones</h3>
+          <p>
+            Every month, we pair your sector with another industry.<br>
+            Cada mes, conectamos tu sector con otro diferente.
+          </p>
+        </article>
+
+        <article class="card">
+          <h3>Meet & Collaborate / Reunirte</h3>
+          <p>
+            We introduce you to 3–5 companies with potential synergies.<br>
+            Te presentamos entre 3 y 5 empresas con posibles sinergias.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Catena Hub</span>
+      <nav class="footer-links">
+        <a href="#">Privacy</a>
+        <a href="#">Terms</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
+
+Replace homepage with clean Catena Hub design
