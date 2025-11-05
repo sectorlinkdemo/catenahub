@@ -1,6 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { isSupabaseConfigured, supabase } from '../lib/supabase';
+import { supabase } from '../lib/supabase';
 import styles from './SignupPage.module.css';
 
 export default function SignupPage() {
@@ -22,14 +22,6 @@ export default function SignupPage() {
     setError('');
 
     try {
-      if (!isSupabaseConfigured || !supabase) {
-        console.info('Supabase not configured; skipping insert and returning mock success.');
-        await new Promise((resolve) => setTimeout(resolve, 400));
-        alert('Company profile submitted! (mock mode)');
-        navigate('/dashboard');
-        return;
-      }
-
       // Example: Insert into a 'companies' table in Supabase
       const { error: insertError } = await supabase.from('companies').insert([
         {

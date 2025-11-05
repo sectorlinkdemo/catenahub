@@ -1,14 +1,16 @@
 import { Link, NavLink } from 'react-router-dom';
+import { useAuth } from '../lib/auth';
 import styles from './Header.module.css';
 
 const navLinks = [
   { to: '/', label: 'Home', end: true },
   { to: '/join', label: 'Join' },
-  { to: '/dashboard', label: 'Dashboard' },
-  { to: '/signup', label: 'Signup' }
+  { to: '/dashboard', label: 'Dashboard' }
 ];
 
 export default function Header() {
+  const { user, signOut } = useAuth();
+
   return (
     <header className={styles.header}>
       <div className={styles.inner}>
@@ -32,14 +34,15 @@ export default function Header() {
             </NavLink>
           ))}
         </nav>
-        <a
-          href="https://app.supabase.com/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className={styles.loginBtn}
-        >
-          Login
-        </a>
+        {user ? (
+          <button onClick={signOut} className={styles.loginBtn}>
+            Sign Out
+          </button>
+        ) : (
+          <Link to="/auth/login" className={styles.loginBtn}>
+            Login
+          </Link>
+        )}
       </div>
     </header>
   );
