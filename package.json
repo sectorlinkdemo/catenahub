@@ -1,0 +1,37 @@
+{
+  "name": "catenahub",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sectorlinkdemo/catenahub.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sectorlinkdemo/catenahub/issues"
+  },
+  "homepage": "https://github.com/sectorlinkdemo/catenahub#readme",
+  "description": "Business networking platform prototype built with React, Vite and Supabase",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.79.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "react-router-dom": "^7.9.5"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "@vitejs/plugin-react": "^5.1.0",
+    "typescript": "^5.9.3",
+    "vite": "^7.2.0"
+  }
+}

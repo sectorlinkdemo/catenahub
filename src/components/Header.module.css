@@ -1,0 +1,86 @@
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  backdrop-filter: blur(16px);
+  background: rgba(12, 13, 16, 0.75);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.5rem;
+  padding: 1rem 1.5rem;
+  width: min(1100px, calc(100% - 3rem));
+  margin: 0 auto;
+}
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
+}
+
+.logo {
+  width: 40px;
+  height: auto;
+}
+
+.brandText {
+  display: inline-block;
+}
+
+.nav {
+  display: flex;
+  gap: 1.25rem;
+}
+
+.navLink {
+  font-weight: 500;
+  color: var(--color-text-muted);
+  padding: 0.35rem 0.5rem;
+  border-radius: 6px;
+  transition: color 0.2s ease, background 0.2s ease;
+}
+
+.navLink:hover {
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+.navLinkActive {
+  color: var(--color-text);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.loginBtn {
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 999px;
+  padding: 0.55rem 1.2rem;
+  font-weight: 500;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.loginBtn:hover {
+  border-color: var(--color-text);
+  transform: translateY(-1px);
+}
+
+@media (max-width: 768px) {
+  .inner {
+    flex-direction: column;
+    align-items: flex-start;
+    width: min(100%, calc(100% - 2rem));
+  }
+
+  .nav {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+  }
+}
