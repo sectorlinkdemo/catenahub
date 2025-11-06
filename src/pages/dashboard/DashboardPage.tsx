@@ -3,6 +3,7 @@ import { useAuth } from '../../lib/auth';
 import { supabase } from '../../lib/supabase';
 import MatchCard from '../../components/MatchCard';
 import CompanyProfile from '../../components/CompanyProfile';
+import CompanySettingsPage from './CompanySettingsPage';
 import styles from './DashboardPage.module.css';
 
 interface UserProfile {
@@ -36,9 +37,11 @@ interface Match {
   company_b: Company;
 }
 
+type Section = 'matches' | 'profile' | 'messages' | 'calendar' | 'announcements' | 'settings';
+
 export default function DashboardPage() {
   const { user } = useAuth();
-  const [activeTab, setActiveTab] = useState<'matches' | 'profile'>('matches');
+  const [activeSection, setActiveSection] = useState<Section>('matches');
   const [userProfile, setUserProfile] = useState<UserProfile | null>(null);
   const [currentCompany, setCurrentCompany] = useState<Company | null>(null);
   const [matches, setMatches] = useState<Match[]>([]);
@@ -116,84 +119,156 @@ export default function DashboardPage() {
 
   return (
     <div className={styles.dashboard}>
-      <div className={styles.container}>
-        {/* Stats Overview */}
-        <div className={styles.statsGrid}>
-          <div className={styles.statCard}>
-            <div className={styles.statIcon}>🎯</div>
-            <div className={styles.statContent}>
-              <div className={styles.statValue}>{matches.length}</div>
-              <div className={styles.statLabel}>Total Matches</div>
+      {/* Sidebar */}
+      <aside className={styles.sidebar}>
+        <div className={styles.profile}>
+          {currentCompany.logo_url ? (
+            <img src={currentCompany.logo_url} alt={currentCompany.name} />
+          ) : (
+            <div className={styles.profilePlaceholder}>
+              {currentCompany.name.charAt(0).toUpperCase()}
             </div>
-          </div>
-          <div className={styles.statCard}>
-            <div className={styles.statIcon}>⭐</div>
-            <div className={styles.statContent}>
-              <div className={styles.statValue}>{currentCompany.points}</div>
-              <div className={styles.statLabel}>Points</div>
-            </div>
-          </div>
-          <div className={styles.statCard}>
-            <div className={styles.statIcon}>📈</div>
-            <div className={styles.statContent}>
-              <div className={styles.statValue}>Level {currentCompany.level}</div>
-              <div className={styles.statLabel}>Current Level</div>
-            </div>
-          </div>
-          <div className={styles.statCard}>
-            <div className={styles.statIcon}>🤝</div>
-            <div className={styles.statContent}>
-              <div className={styles.statValue}>
-                {matches.filter((m) => m.status === 'mutual_match').length}
-              </div>
-              <div className={styles.statLabel}>Active Connections</div>
-            </div>
-          </div>
+          )}
         </div>
-
-        {/* Tabs */}
-        <div className={styles.tabs}>
+        <nav className={styles.navIcons} aria-label="Dashboard navigation">
           <button
-            className={`${styles.tab} ${activeTab === 'matches' ? styles.tabActive : ''}`}
-            onClick={() => setActiveTab('matches')}
+            onClick={() => setActiveSection('matches')}
+            title="Matches"
+            className={activeSection === 'matches' ? styles.active : ''}
           >
-            <span>🎯</span> Matches
+            🎯
           </button>
           <button
-            className={`${styles.tab} ${activeTab === 'profile' ? styles.tabActive : ''}`}
-            onClick={() => setActiveTab('profile')}
+            onClick={() => setActiveSection('messages')}
+            title="Messages"
+            className={activeSection === 'messages' ? styles.active : ''}
           >
-            <span>🏢</span> Company Profile
+            💬
           </button>
-        </div>
+          <button
+            onClick={() => setActiveSection('calendar')}
+            title="Calendar"
+            className={activeSection === 'calendar' ? styles.active : ''}
+          >
+            📅
+          </button>
+          <button
+            onClick={() => setActiveSection('announcements')}
+            title="Announcements"
+            className={activeSection === 'announcements' ? styles.active : ''}
+          >
+            📣
+          </button>
+          <button
+            onClick={() => setActiveSection('profile')}
+            title="Company Profile"
+            className={activeSection === 'profile' ? styles.active : ''}
+          >
+            🏢
+          </button>
+          <button
+            onClick={() => setActiveSection('settings')}
+            title="Settings"
+            className={activeSection === 'settings' ? styles.active : ''}
+          >
+            ⚙️
+          </button>
+        </nav>
+      </aside>
 
-        {/* Content */}
-        {activeTab === 'matches' && (
-          <div className={styles.matchesGrid}>
-            {matches.length === 0 ? (
-              <div className={styles.emptyState}>
-                <div className={styles.emptyIcon}>🔍</div>
-                <h3>No matches yet</h3>
-                <p>Check back soon for AI-generated company matches!</p>
+      {/* Main Content */}
+      <div className={styles.mainContent}>
+        <div className={styles.container}>
+          {/* Stats Overview */}
+          {activeSection === 'matches' && (
+            <div className={styles.statsGrid}>
+              <div className={styles.statCard}>
+                <div className={styles.statIcon}>🎯</div>
+                <div className={styles.statContent}>
+                  <div className={styles.statValue}>{matches.length}</div>
+                  <div className={styles.statLabel}>Total Matches</div>
+                </div>
               </div>
-            ) : (
-              matches.map((match) => {
-                const otherCompany =
-                  match.company_a_id === currentCompany.id ? match.company_b : match.company_a;
-                return (
-                  <MatchCard
-                    key={match.id}
-                    match={match}
-                    otherCompany={otherCompany}
-                    currentCompanyId={currentCompany.id}
-                  />
-                );
-              })
-            )}
-          </div>
-        )}
+              <div className={styles.statCard}>
+                <div className={styles.statIcon}>⭐</div>
+                <div className={styles.statContent}>
+                  <div className={styles.statValue}>{currentCompany.points}</div>
+                  <div className={styles.statLabel}>Points</div>
+                </div>
+              </div>
+              <div className={styles.statCard}>
+                <div className={styles.statIcon}>📈</div>
+                <div className={styles.statContent}>
+                  <div className={styles.statValue}>Level {currentCompany.level}</div>
+                  <div className={styles.statLabel}>Current Level</div>
+                </div>
+              </div>
+              <div className={styles.statCard}>
+                <div className={styles.statIcon}>🤝</div>
+                <div className={styles.statContent}>
+                  <div className={styles.statValue}>
+                    {matches.filter((m) => m.status === 'mutual_match').length}
+                  </div>
+                  <div className={styles.statLabel}>Active Connections</div>
+                </div>
+              </div>
+            </div>
+          )}
 
-        {activeTab === 'profile' && <CompanyProfile company={currentCompany} />}
+          {/* Content Sections */}
+          {activeSection === 'matches' && (
+            <div className={styles.matchesGrid}>
+              {matches.length === 0 ? (
+                <div className={styles.emptyState}>
+                  <div className={styles.emptyIcon}>🔍</div>
+                  <h3>No matches yet</h3>
+                  <p>Check back soon for AI-generated company matches!</p>
+                </div>
+              ) : (
+                matches.map((match) => {
+                  const otherCompany =
+                    match.company_a_id === currentCompany.id ? match.company_b : match.company_a;
+                  return (
+                    <MatchCard
+                      key={match.id}
+                      match={match}
+                      otherCompany={otherCompany}
+                      currentCompanyId={currentCompany.id}
+                    />
+                  );
+                })
+              )}
+            </div>
+          )}
+
+          {activeSection === 'profile' && <CompanyProfile company={currentCompany} />}
+
+          {activeSection === 'messages' && (
+            <div className={styles.emptyState}>
+              <div className={styles.emptyIcon}>💬</div>
+              <h3>Messages</h3>
+              <p>Chat with your matches. Coming soon!</p>
+            </div>
+          )}
+
+          {activeSection === 'calendar' && (
+            <div className={styles.emptyState}>
+              <div className={styles.emptyIcon}>📅</div>
+              <h3>Calendar</h3>
+              <p>Your scheduled meetings will appear here.</p>
+            </div>
+          )}
+
+          {activeSection === 'announcements' && (
+            <div className={styles.emptyState}>
+              <div className={styles.emptyIcon}>📣</div>
+              <h3>Announcements</h3>
+              <p>Platform updates and news will be posted here.</p>
+            </div>
+          )}
+
+          {activeSection === 'settings' && <CompanySettingsPage />}
+        </div>
       </div>
     </div>
   );
